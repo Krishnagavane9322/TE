@@ -1,0 +1,29 @@
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+    print(start, end=' ')
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+# Graph definition
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+# Get user input for starting node
+print("Available nodes:", list(graph.keys()))
+start_node = input("Enter the starting node for DFS traversal: ").upper()
+
+# Validate input and run DFS
+if start_node in graph:
+    print("DFS Traversal:")
+    dfs(graph, start_node)
+else:
+    print("Error: Invalid node! Please choose a node from", list(graph.keys()))
